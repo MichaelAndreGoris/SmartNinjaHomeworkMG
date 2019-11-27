@@ -1,0 +1,51 @@
+# Homework lesson 1
+# prepared by Michael Goris
+# THE MOOD CHECKER
+
+mood = input("Please enter your mood: (choices are: happy, sad, relaxed, nervous) ")
+
+if mood == "happy":
+    print("It is great to see you happy!")
+elif mood == "sad":
+    print("A pity to see you sad.")
+elif mood == "relaxed":
+    print("Stay cool brother.")
+elif mood == "nervous":
+    print("Take a deep breath 3 times.")
+else:
+    print("I don't recognize this mood.")
+    
+# GUESS THE SECRET NUMBER
+secret = "7"
+
+guess = input("Dear gambler, what could be our secret number.  Hint: between 0 and 9.")
+
+if guess == secret:
+    print("Congratulations.  You have successfully found our secret number.")
+else:
+    print ("Sorry but you lost.  Add more money to guess again.")
+    
+# CALCULATOR
+
+num_1 = None
+num_2 = None
+operation = None
+result = None
+
+addition = "+"
+subtraction = "-"
+multiplication = "*"
+division = "/"
+
+num_1 = int(input("Fill in the first number: "))
+num_2 = int(input("Fill in the second number: "))
+operation = input("Fill in the desired arithmetic operation (+, -, *, /): ")
+
+if operation == "+":
+    print(num_1 + num_2)
+elif operation == "-":
+    print(num_1 - num_2)
+elif operation == "*":
+    print(num_1 * num_2)
+else:
+    print(num_1 / num_2)
