@@ -1,0 +1,48 @@
+# this program first asks the user to input a value between 1 - 100
+# then it generates all values from 1 to and including the input value
+
+program_header = """This program allows you to input a value n between 1 and 100.
+It will first generate the list with integer values from 1 to n.
+At second it generates the Fibonacci row for all values till n.
+At last it will indicate if this is a prime number or not."""
+
+print(program_header)
+
+#ask user input_value, include error handling
+while True:
+    try:
+        input_value = int(input("Please input a number between 1 and 100: "))
+        break
+    except ValueError:
+        print("This is not a number")
+
+#print integer sequence from 1 to input_value
+print(f"Here comes the integer sequence from 1 to {input_value}" )
+i = 1
+while i < input_value + 1:
+    print(str(i))
+    i += 1
+
+#print Fibonacci row
+print("Here comes the Fibonacci row:")
+j = 1
+number_1 = 0
+number_2 = 1
+print(number_1)
+print(number_2)
+while j < input_value + 1:
+    temp = number_1
+    number_1 = number_2
+    number_2 = temp + number_2
+    print(str(number_2))
+    j += 1
+
+#Determine if the input_number is a prime number and print the result on the screen
+for k in range(1,input_value-1):
+    k += 1
+    if input_value % k == 0:
+        print(f"{input_value} is not a prime number")
+        break
+    else:
+        print(f"{input_value} is a prime number")
+        break
