@@ -1,0 +1,67 @@
+# this program is a game which allows the user to guess a random generated secret number
+# several options are available
+
+# all imports are declared here
+import random
+import json
+import datetime
+
+# generate random secret number and initialization of "attempts" and "wrong guesses"
+secret = random.randint(1, 10)
+attempts = 0
+wrong_guesses = []
+
+#define functions
+def play_game(level):
+    global attempts
+    first_name = input("Please identify yourself with your first name only:")
+    while True:
+        guess = int(input("Guess the secret number (between 1 and 30): "))
+        attempts += 1
+        wrong_guesses.append(guess)
+
+        if guess == secret:
+            print("You've guessed it - congratulations! It's number " + str(secret))
+            print("Attempts needed: " + str(attempts))
+            score_list.append(
+                {"first_name": first_name, "attempts": attempts, "date": str(datetime.datetime.now()), "guess": guess,
+                 "wrong_guesses": (wrong_guesses)})
+            with open("score.txt", "w") as score_file:
+                score_file.write(json.dumps(score_list))
+            break
+        elif guess > secret and game_level == "E":
+            print("Your guess is not correct... try something smaller")
+
+        elif guess < secret and game_level == "E":
+            print("Your guess is not correct... try something bigger")
+
+def get_score_list():
+    with open("score.txt", "r") as score_file:
+        score_list = json.loads(score_file.read())
+        print("Top scores of this game:")
+        for score_dict in score_list:
+            print(str(score_dict["attempts"]) + " attempts, date: " + str(score_dict.get("date")) + " " + str(
+                score_dict.get("first_name")) + " secret: " + str(score_dict.get("guess")) + " wrong guesses: " + str(
+                score_dict.get("wrong_guesses")))
+
+def top_scores():
+    with open("score.txt", "r") as score_file:
+        score_list = json.loads(score_file.read())
+        score_list.sort("date")
+
+
+# the main program code starts here
+while True:
+    selection = input("Would you like to A) play a new game, B) see the best score, C) get the top scores, or D) quit?")
+    if selection == "A":
+        game_level = input("Choose your level: H) Hard or E) Easy:")
+        play_game(game_level)
+    elif selection == "B":
+        get_score_list()
+    elif selection == "C":
+        top_scores()
+    else:
+        break
+
+
+
